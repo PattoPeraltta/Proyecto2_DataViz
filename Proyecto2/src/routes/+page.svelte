@@ -619,7 +619,7 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
                       </div>
                     </button>
                     <div class="mt-3 text-center">
-                      <p class="text-sm font-medium text-amber-200">{record.genre}</p>
+                      <p class="text-sm font-medium text-amber-200">{record.title}</p>
                     </div>
                   </div>
                 {/each}
