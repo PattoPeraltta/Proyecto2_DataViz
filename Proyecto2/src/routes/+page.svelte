@@ -125,27 +125,7 @@
       "The Blacker the Berry",
       "Alright"
     ],
-  },
-  {
-    id: 7,
-    title: "The Famous 1938 Carnegie Hall Concert",
-    artist: "Benny Goodman Sextet",
-    year: 1938,
-    genre: "Jazz",
-    playsMillions: 12,
-    ranking: 5,
-    color: "#b58e31",
-    labelColor: "#f1e8c7",
-    coverColor: "#3a2f1e",
-    description: "Grabación en vivo del histórico concierto de Benny Goodman en Carnegie Hall, cumbre del swing.",
-    tracks: [
-      "Stealin' Apples",
-      "Don't Be That Way",
-      "One O’Clock Jump",
-      "Flying Home",
-      "Avalon"
-    ],
-  },
+  }
 ];
 
     // State variables
@@ -239,6 +219,22 @@
     const eraOverlay   = record => `/overlays/${getEra(record.year)}.png`;
     const groovesOverlay = record => `/overlays/grooves-${getGrooves(record.playsMillions)}.png`;
     const starSticker  = ()     => `/overlays/star.png`;
+
+    function toCamelCase(str) {
+    return str
+      .split(' ')
+      .map((word, i) =>
+        i === 0
+          ? word.charAt(0).toLowerCase() + word.slice(1)
+          : word.charAt(0).toUpperCase() + word.slice(1)
+      )
+      .join('');
+  }
+
+// ruta al cover en static/covers
+const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
+
+
   </script>
   
   <main class="min-h-screen bg-gradient-to-b from-amber-950 to-stone-950 p-4 md:p-8">
@@ -479,7 +475,7 @@
               </div>
             </div>
           </div>
-  
+
           <!-- Record Info Panel -->
           <div class="col-span-1 lg:col-span-2">
             {#if selectedRecord}
@@ -603,13 +599,14 @@
                       style="background-color: {record.coverColor}; border: none; padding: 0; text-align: left;"
                     >
                       <!-- Album Cover -->
-                      <div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
-                        <div class="mb-4 h-24 w-24 rounded-full" style="background-color: {record.color};"></div>
-                        <h3 class="font-serif text-xl font-bold text-white">{record.title}</h3>
-                        <p class="mt-2 text-sm text-white/80">{record.artist}</p>
-                        <p class="mt-2 text-xs text-white/60">{record.year}</p>
-                      </div>
+                      <!-- portada redonda de 96×96px centrada -->
+                      <img
+                      src= {coverFile(record)}
+                      alt={`Portada de ${coverFile(record)}`}
+                      class="absolute inset-0 m-auto h-48 w-48 object-cover "
+                      />
   
+
                       <!-- Hover Effect -->
                       <div class="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity group-hover:opacity-100">
                         <div class="rounded-full bg-white/20 p-3">
