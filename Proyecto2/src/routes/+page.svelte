@@ -246,6 +246,125 @@
       <h1 class="mb-8 text-center font-serif text-5xl font-bold tracking-tight text-amber-100">Vinyl Vibes</h1>
       
       <div class="grid gap-12">
+        <!-- >>> Leyendas / Referencias >>> -->
+<section class="mb-8 space-y-8">
+  <!-- 1) Colores ⇢ Géneros -->
+  <div>
+    <h3 class="text-amber-200 font-semibold mb-2">Colores / Géneros</h3>
+    <div class="flex gap-8">
+      <div class="flex items-center gap-2">
+        <img src="/vinyls/Rock.png"      alt="Rock"      class="w-16 h-16"/>
+        <span class="text-amber-200">Rock</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="/vinyls/Pop.png"       alt="Pop"       class="w-16 h-16"/>
+        <span class="text-amber-200">Pop</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="/vinyls/Latino.png"    alt="Latino"    class="w-16 h-16"/>
+        <span class="text-amber-200">Latino</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="/vinyls/Electronica.png" alt="Electrónica" class="w-16 h-16"/>
+        <span class="text-amber-200">Electrónica</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="/vinyls/Jazz.png"      alt="Jazz"      class="w-16 h-16"/>
+        <span class="text-amber-200">Jazz</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <img src="/vinyls/HipHop.png" alt="Hip-hop/Rap" class="w-16 h-16"/>
+        <span class="text-amber-200">Hip-hop/Rap</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2) Desgaste ⇢ Épocas -->
+  <div>
+    <h3 class="text-amber-200 font-semibold mb-2">Desgaste / Épocas</h3>
+    <div class="flex gap-8 items-center">
+      <!-- Presente: 2000–2025 (solo base) -->
+      <div class="flex flex-col items-center gap-1">
+        <div class="relative w-16 h-16">
+          <img
+            src="/vinyls/HipHop.png"
+            alt="2000 – 2025"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+        <span class="text-amber-200 text-xs">2000 – 2025</span>
+      </div>
+
+      <!-- Desgaste medio: 1950–2000 -->
+      <div class="flex flex-col items-center gap-1">
+        <div class="relative w-16 h-16">
+          <img
+            src="/vinyls/HipHop.png"
+            alt="1950 – 2000"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+          <img
+            src="/overlays/1950-2000.png"
+            alt="Desgaste medio"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+        <span class="text-amber-200 text-xs">1950 – 2000</span>
+      </div>
+
+      <!-- Desgaste fuerte: 1900–1950 -->
+      <div class="flex flex-col items-center gap-1">
+        <div class="relative w-16 h-16">
+          <img
+            src="/vinyls/HipHop.png"
+            alt="1900 – 1950"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+          <img
+            src="/overlays/1900-1950.png"
+            alt="Desgaste fuerte"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+        </div>
+        <span class="text-amber-200 text-xs">1900 – 1950</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3) Surcos ⇢ Millones de reproducciones -->
+  <div>
+    <h3 class="text-amber-200 font-semibold mb-2">Surcos / Millones de reproducciones</h3>
+    <div class="flex gap-8 items-center">
+      {#each [1,2,3,4] as grooves}
+        <div class="flex flex-col items-center gap-1">
+          <div class="relative w-16 h-16">
+            <img
+              src="/vinyls/HipHop.png"
+              alt={`${grooves} surco(s)`}
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+            <img
+              src={`/overlays/grooves-${grooves}.png`}
+              alt={`${grooves} surco(s) overlay`}
+              class="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+          <span class="text-amber-200 text-xs">
+            {grooves === 1
+              ? "< 50 M"
+              : grooves === 2
+              ? "< 100 M"
+              : grooves === 3
+              ? "< 500 M"
+              : "> 500 M"}
+          </span>
+        </div>
+      {/each}
+    </div>
+  </div>
+
+  <!-- <<< Leyendas / Referencias <<< -->
+
         <!-- Main Player Section -->
         <div class="grid grid-cols-1 gap-8 rounded-xl bg-gradient-to-br from-amber-900/80 to-amber-950/80 p-6 shadow-2xl backdrop-blur-sm lg:grid-cols-5">
           <!-- Record Player -->
