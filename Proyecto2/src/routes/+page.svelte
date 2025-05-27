@@ -1,117 +1,37 @@
 <script>
-    import { onMount, tick } from 'svelte';
-    import { fade, fly, scale } from 'svelte/transition';
-    import { spring, tweened } from 'svelte/motion';
-    import { cubicOut, linear } from 'svelte/easing';
+  import { onMount, tick } from 'svelte';
+  import { fade, fly, scale } from 'svelte/transition';
+  import { spring, tweened } from 'svelte/motion';
+  import { cubicOut, linear } from 'svelte/easing';
+
+  let records = [];
   
-    // Detailed record data
-    const records = [
-  {
-    id: 1,
-    title: "Led Zeppelin IV",
-    artist: "Led Zeppelin",
-    year: 1971,
-    genre: "Rock",
-    playsMillions: 37,
-    ranking: 2,
-    description: "El cuarto álbum de Led Zeppelin, con himnos como ‘Stairway to Heaven’ y una fusión de rock duro y folk.",
-    tracks: [
-      "Black Dog",
-      "Rock and Roll",
-      "The Battle of Evermore",
-      "Stairway to Heaven",
-      "When the Levee Breaks"
-    ],
-  },
-  {
-    id: 2,
-    title: "The Voice of Frank Sinatra",
-    artist: "Frank Sinatra",
-    year: 1946,
-    genre: "Pop",
-    playsMillions: 20,
-    ranking: 7,
-    description: "El debut en solitario de Sinatra, mostrando su voz suave en clásicos como ‘I’ll Never Smile Again’.",
-    tracks: [
-      "Saints",
-      "I’ll Never Smile Again",
-      "Wrap Your Troubles in Dreams",
-      "Our Love Affair",
-      "I'm a Fool to Want You"
-    ],
-  },
-  {
-    id: 3,
-    title: "El Mal Querer",
-    artist: "Rosalía",
-    year: 2018,
-    genre: "Latino",
-    playsMillions: 60,
-    ranking: 4,
-    description: "Rosalía fusiona flamenco, pop y reggaetón, redefiniendo la música urbana latina.",
-    tracks: [
-      "Malamente",
-      "Que No Salga la Luna",
-      "Pienso en tu mirá",
-      "Bagdad",
-      "Reniego"
-    ],
-  },
-  {
-    id: 4,
-    title: "Discovery",
-    artist: "Daft Punk",
-    year: 2001,
-    genre: "Electronica",
-    playsMillions: 45,
-    ranking: 5,
-    color: "#ffde00",
-    labelColor: "#fff8cc",
-    coverColor: "#1a1a1a",
-    description: "Electrónica pura con hits como ‘One More Time’ y ‘Digital Love’.",
-    tracks: [
-      "One More Time",
-      "Aerodynamic",
-      "Digital Love",
-      "Harder, Better, Faster, Stronger",
-      "Face to Face"
-    ],
-  },
-  {
-    id: 5,
-    title: "Kind of Blue",
-    artist: "Miles Davis",
-    year: 1959,
-    genre: "Jazz",
-    playsMillions: 25,
-    ranking: 2,
-    description: "Piedra angular del jazz modal, con leyendas como Coltrane y Evans.",
-    tracks: [
-      "So What",
-      "Freddie Freeloader",
-      "Blue in Green",
-      "All Blues",
-      "Flamenco Sketches"
-    ],
-  },
-  {
-    id: 6,
-    title: "To Pimp a Butterfly",
-    artist: "Kendrick Lamar",
-    year: 2015,
-    genre: "HipHop",
-    playsMillions: 500,
-    ranking: 1,
-    description: "Hip-hop consciente que mezcla jazz, funk y poesía urbana en cada palabra.",
-    tracks: [
-      "Wesley's Theory",
-      "King Kunta",
-      "Institutionalized",
-      "The Blacker the Berry",
-      "Alright"
-    ],
+  onMount(async () => {
+  const res = await fetch('/data/albums.csv');
+  const text = await res.text();
+  const parsed = parseCSV(text);
+  records = parsed.map(entry => ({
+    id: +entry.id,
+    title: entry.title,
+    artist: entry.artist,
+    year: +entry.year,
+    genre: entry.genre,
+    playsMillions: +entry.playsMillions,
+    ranking: +entry.ranking,
+    description: entry.description,
+    tracks: entry.tracks.split(';').map(t => t.trim())
+  }));
+  });
+  function parseCSV(text) {
+    const lines = text.trim().split('\n');
+    const headers = lines[0].split(',');
+    return lines.slice(1).map(line => {
+      const values = line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(val => val.replace(/^"|"$/g, ''));
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = values[i]);
+      return obj;
+    });
   }
-];
 
     // State variables
     let currentRecordId = null;
@@ -382,7 +302,7 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
 
                       <img src={starSticker()} alt="Ranking star" class="absolute inset-0 object-cover" />
                       <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-black top-62 left-59">
-                        #{selectedRecord.ranking}
+                        {selectedRecord.ranking > 100 ? '+100' : `#${selectedRecord.ranking}`}
                       </span>
 
                     </div>
@@ -466,8 +386,8 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
           <!-- Record Info Panel -->
           <div class="col-span-1 lg:col-span-2">
             {#if selectedRecord}
-              <div class="h-full rounded-lg bg-amber-950/50 p-6">
-                <div class="flex flex-col h-full">
+              <div class="h-[630px] overflow-y-auto rounded-lg bg-amber-950/50 p-6">
+                <div class="flex flex-col">
                   <div in:fade={{ duration: 500 }}>
                     <h2 class="font-serif text-3xl font-bold text-amber-100">{selectedRecord.title}</h2>
                     <div class="mt-1 flex items-center">
