@@ -14,9 +14,6 @@
     genre: "Rock",
     playsMillions: 37,
     ranking: 2,
-    color: "#f5c61c",
-    labelColor: "#fff4cc",
-    coverColor: "#333333",
     description: "El cuarto álbum de Led Zeppelin, con himnos como ‘Stairway to Heaven’ y una fusión de rock duro y folk.",
     tracks: [
       "Black Dog",
@@ -34,9 +31,6 @@
     genre: "Pop",
     playsMillions: 20,
     ranking: 7,
-    color: "#c04000",
-    labelColor: "#fce7d8",
-    coverColor: "#2c1a12",
     description: "El debut en solitario de Sinatra, mostrando su voz suave en clásicos como ‘I’ll Never Smile Again’.",
     tracks: [
       "Saints",
@@ -54,9 +48,6 @@
     genre: "Latino",
     playsMillions: 60,
     ranking: 4,
-    color: "#940023",
-    labelColor: "#f8e1e7",
-    coverColor: "#3a0f2f",
     description: "Rosalía fusiona flamenco, pop y reggaetón, redefiniendo la música urbana latina.",
     tracks: [
       "Malamente",
@@ -94,9 +85,6 @@
     genre: "Jazz",
     playsMillions: 25,
     ranking: 2,
-    color: "#1e3d7b",
-    labelColor: "#d3e0f5",
-    coverColor: "#0b1437",
     description: "Piedra angular del jazz modal, con leyendas como Coltrane y Evans.",
     tracks: [
       "So What",
@@ -111,12 +99,9 @@
     title: "To Pimp a Butterfly",
     artist: "Kendrick Lamar",
     year: 2015,
-    genre: "Hiphop/rap",
-    playsMillions: 10,
+    genre: "HipHop",
+    playsMillions: 500,
     ranking: 1,
-    color: "#5d4037",
-    labelColor: "#efebe9",
-    coverColor: "#212121",
     description: "Hip-hop consciente que mezcla jazz, funk y poesía urbana en cada palabra.",
     tracks: [
       "Wesley's Theory",
@@ -283,14 +268,14 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
                 <!-- 2000–2025 -->
                 <div class="flex flex-col items-center gap-1">
                   <div class="relative w-24 h-24">
-                    <img src="/vinyls/HipHop.png" alt="2000–2025" class="absolute inset-0 w-full h-full object-cover rounded-full"/>
+                    <img src="/vinyls/Base.png" alt="2000–2025" class="absolute inset-0 w-full h-full object-cover rounded-full"/>
                   </div>
                   <span class="text-amber-200 text-xs">2000 – 2025</span>
                 </div>
                 <!-- 1950–2000 -->
                 <div class="flex flex-col items-center gap-1">
                   <div class="relative w-24 h-24">
-                    <img src="/vinyls/HipHop.png"        alt="1950–2000" class="absolute inset-0 w-full h-full object-cover rounded-full"/>
+                    <img src="/vinyls/Base.png"        alt="1950–2000" class="absolute inset-0 w-full h-full object-cover rounded-full"/>
                     <img src="/overlays/1950-2000.png"   alt="Desgaste medio" class="absolute inset-0 w-full h-full object-cover rounded-full"/>
                   </div>
                   <span class="text-amber-200 text-xs">1950 – 2000</span>
@@ -298,7 +283,7 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
                 <!-- 1900–1950 -->
                 <div class="flex flex-col items-center gap-1">
                   <div class="relative w-24 h-24">
-                    <img src="/vinyls/HipHop.png"        alt="1900–1950" class="absolute inset-0 w-full h-full object-cover rounded-full"/>
+                    <img src="/vinyls/Base.png"        alt="1900–1950" class="absolute inset-0 w-full h-full object-cover rounded-full"/>
                     <img src="/overlays/1900-1950.png"   alt="Desgaste fuerte" class="absolute inset-0 w-full h-full object-cover rounded-full"/>
                   </div>
                   <span class="text-amber-200 text-xs">1900 – 1950</span>
@@ -312,7 +297,7 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
                 {#each [1,2,3,4] as grooves}
                   <div class="flex flex-col items-center gap-1">
                     <div class="relative w-24 h-24">
-                      <img src="/vinyls/HipHop.png" class="absolute inset-0 w-full h-full object-cover rounded-full" alt="{grooves} surco(s)"/>
+                      <img src="/vinyls/Base.png" class="absolute inset-0 w-full h-full object-cover rounded-full" alt="{grooves} surco(s)"/>
                       <img src={`/overlays/grooves-${grooves}.png`} class="absolute inset-0 w-full h-full object-cover rounded-full" alt="{grooves} surco(s) overlay"/>
                     </div>
                     <span class="text-amber-200 text-xs">
