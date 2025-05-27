@@ -320,8 +320,9 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
             <h3 class="text-amber-200 font-semibold mb-2">Pegatina / Ranking</h3>
             <div class="flex items-center gap-4">
               <div class="relative w-24 h-24">
+                <img src="/vinyls/Base.png" alt="Vinilo base" class="absolute inset-0 w-full h-full object-cover rounded-full" />
                 <img src="/overlays/star.png" alt="Pegatina ranking" class="absolute inset-0 w-full h-full object-cover"/>
-                <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-black">#</span>
+                <span class="absolute inset-0 flex items-center justify-center text-xs font-bold text-black top-12 left-11.5">#</span>
               </div>
               <p class="text-amber-200">
                 El número dentro de la estrella indica el ranking del álbum la semana de lanzamiento.
@@ -357,7 +358,7 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
                     style={`transform: rotate(${recordRotation}deg); transform-origin: center center;`}
                   >
                     <!--  Contenedor del vinilo: tamaño fijo + recorte circular  -->
-                    <div class="relative w-124 aspect-square overflow-hidden rounded-full bg-neutral-900 shadow-inner">
+                    <div class="relative w-124 aspect-square rounded-full bg-neutral-900 shadow-inner">
                       <!-- 1) Base de color según género -->
                       <img
                         src={vinylBase(selectedRecord)}
@@ -379,17 +380,11 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
                         class="absolute inset-0 object-cover"
                       />
 
-                      <!-- 4) Pegatina: estrella + ranking -->
-                      <div class="absolute bottom-2 right-2 w-8 h-8 z-20">
-                        <img
-                          src={starSticker()}
-                          alt="Sticker ranking"
-                          class="w-full h-full object-contain"
-                        />
-                        <span class="absolute inset-0 flex items-center justify-center text-xs font-bold text-black">
-                          {selectedRecord.ranking}
-                        </span>
-                      </div>
+                      <img src={starSticker()} alt="Ranking star" class="absolute inset-0 object-cover" />
+                      <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-black top-62 left-59">
+                        #{selectedRecord.ranking}
+                      </span>
+
                     </div>
                   </div>
                 {/if}
