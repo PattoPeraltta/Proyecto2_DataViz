@@ -37,11 +37,14 @@
     let currentRecordId = null;
     let isPlaying = false;
     let volume = 75;
+    $: if (audioElement) audioElement.volume = volume / 100;
     let activeIndex = 0;
     let tonearmRotation = spring(0);
     let recordRotation = 0;
     let animationFrame;
-    let selectedRecord; // Declare the variable here
+    let selectedRecord;
+    let audioElement;
+    const visibleCount = 4;
   
     // Derived state
     $: selectedRecord = records.find(record => record.id === currentRecordId);
@@ -51,21 +54,34 @@
       if (currentRecordId === id) return;
       isPlaying = false;
       currentRecordId = id;
+
+      const record = records.find(r => r.id === id);
+      const fileName = toCamelCase(record.title);
+      if (audioElement) {
+        audioElement.src = `/music/${fileName}.mp3`;
+        audioElement.load();
+      }
+
       setTimeout(() => {
         isPlaying = true;
+        if (audioElement) audioElement.play();
       }, 800);
     }
   
     // Handle play/pause
     function handlePlayPause() {
-      if (currentRecordId !== null) {
-        isPlaying = !isPlaying;
-      }
+      if (currentRecordId === null || !audioElement) return;
+      isPlaying = !isPlaying;
+      isPlaying ? audioElement.play() : audioElement.pause();
     }
   
     // Handle stop
     function handleStop() {
       isPlaying = false;
+      if (audioElement) {
+        audioElement.pause();
+        audioElement.currentTime = 0;
+      }
       setTimeout(() => {
         currentRecordId = null;
       }, 300);
@@ -73,13 +89,13 @@
   
     // Carousel navigation
     function handlePrevious() {
-      activeIndex = activeIndex > 0 ? activeIndex - 1 : records.length - 1;
+      activeIndex = Math.max(activeIndex - 1, 0);
     }
-  
+
     function handleNext() {
-      activeIndex = activeIndex < records.length - 1 ? activeIndex + 1 : 0;
+      activeIndex = Math.min(activeIndex + 1, records.length - visibleCount);
     }
-  
+
     // Animation for record rotation
     function animateRecord() {
       if (isPlaying) {
@@ -141,7 +157,7 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
 
 
   </script>
-  
+  <audio bind:this={audioElement} on:ended={() => isPlaying = false}></audio>
   <main class="min-h-screen bg-gradient-to-b from-amber-950 to-stone-950 p-4 md:p-8">
     <div class="mx-auto max-w-6xl">
       <h1 class="mb-8 text-center font-serif text-5xl font-bold tracking-tight text-amber-100">Vinyl Vibes</h1>
@@ -469,7 +485,11 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
             <div class="absolute left-4 top-1/2 z-10 -translate-y-1/2">
               <button
                 on:click={handlePrevious}
-                class="flex h-10 w-10 items-center justify-center rounded-full bg-amber-800 text-white shadow-lg transition-all hover:bg-amber-700"
+                class="flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition-all
+                      {activeIndex === 0
+                        ? 'bg-gray-600 cursor-not-allowed opacity-50'
+                        : 'bg-amber-800 text-white hover:bg-amber-700'}"
+                disabled={activeIndex === 0}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -480,7 +500,11 @@ const coverFile = record => `/covers/${toCamelCase(record.title)}.png`;
             <div class="absolute right-4 top-1/2 z-10 -translate-y-1/2">
               <button
                 on:click={handleNext}
-                class="flex h-10 w-10 items-center justify-center rounded-full bg-amber-800 text-white shadow-lg transition-all hover:bg-amber-700"
+                class="flex h-10 w-10 items-center justify-center rounded-full shadow-lg transition-all
+                      {activeIndex >= records.length - visibleCount
+                        ? 'bg-gray-600 cursor-not-allowed opacity-50'
+                        : 'bg-amber-800 text-white hover:bg-amber-700'}"
+                disabled={activeIndex >= records.length - visibleCount}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
