@@ -1,38 +1,93 @@
-# sv
+# 🎵 SvelteKit Vinyl Music Player
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+An interactive, visually-rich music player built with SvelteKit. Browse a collection of iconic albums, view their details, and play sample tracks—all presented as animated vinyl records.
 
-## Creating a project
+## 🚀 Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Animated Splash Screen**: Welcomes users with a typewriter effect.
+- **Vinyl Record Player**: Albums are visualized as spinning vinyls, with overlays for genre, era, and popularity.
+- **Album Carousel**: Browse and select from a collection of albums.
+- **Detailed Album Info**: View artist, year, genre, ranking, description, and tracklist.
+- **Audio Playback**: Play, pause, and stop controls for each album.
+- **Responsive Design**: Works seamlessly on desktop and mobile.
+- **Data-driven**: Album data loaded from a CSV file for easy updates.
 
-```bash
-# create a new project in the current directory
-npx sv create
+## 🗂️ Project Structure
 
-# create a new project in my-app
-npx sv create my-app
+```
+Proyecto2/
+├── public/              # Static assets (images, icons)
+├── src/
+│   ├── routes/
+│   │   ├── +layout.svelte   # App layout
+│   │   └── +page.svelte     # Main music player UI & logic
+│   └── lib/                 # (Optional) Shared components/utilities
+├── static/
+│   ├── covers/          # Album cover images
+│   ├── data/albums.csv  # Album metadata (id, title, artist, ...)
+│   ├── music/           # Audio files for each album
+│   ├── overlays/        # UI overlays (era, grooves, ranking)
+│   └── vinyls/          # Vinyl base images by genre
+├── package.json         # Project metadata & scripts
+├── svelte.config.js     # SvelteKit config
+└── vite.config.ts       # Vite config
 ```
 
-## Developing
+## 📦 Setup & Development
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   pnpm install
+   # or
+   yarn install
+   ```
 
-```bash
-npm run dev
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   # or
+   npm run dev -- --open  # Opens in browser
+   ```
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+3. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
-## Building
+4. **Preview the production build:**
+   ```bash
+   npm run preview
+   ```
 
-To create a production version of your app:
+## 📝 Data & Customization
 
-```bash
-npm run build
-```
+- **Add/Update Albums:**
+  - Edit `static/data/albums.csv` to add new albums or update existing ones.
+  - Place corresponding cover images in `static/covers/` and audio files in `static/music/`.
+- **Genres, Eras, and Overlays:**
+  - Add or modify vinyl base images in `static/vinyls/`.
+  - Overlays for era and grooves are in `static/overlays/`.
 
-You can preview the production build with `npm run preview`.
+## 🛠️ Scripts
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+- `npm run dev` — Start development server
+- `npm run build` — Build for production
+- `npm run preview` — Preview production build
+- `npm run lint` — Lint code
+- `npm run format` — Format code
+
+## 📚 Tech Stack
+
+- [SvelteKit](https://kit.svelte.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vite](https://vitejs.dev/)
+
+## 📄 License
+
+MIT (or specify your license here)
+
+---
+
+> Inspired by the beauty of vinyl and the power of Svelte.
