@@ -5,7 +5,7 @@
   import { cubicOut, linear } from 'svelte/easing';
 
   // Typewriter effect
-  let fullText = "The Story of Music: Encoded in Vinyl";
+  let fullText = "La historia de la música";
   let displayedText = $state("");
   let typingIndex = 0;
 
@@ -190,7 +190,7 @@
   <div class="hero-content">
     <h1 class="typewriter">{displayedText}</h1>
     <p class="hero-subtitle" style="opacity: {displayedText.length === fullText.length ? 1 : 0}">
-      A data visualization journey through decades of musical history
+      Un viaje de visualización de datos a través de décadas de historia musical
     </p>
   </div>
   <div class="scroll-indicator" style="opacity: {displayedText.length === fullText.length ? 1 : 0}">
@@ -203,52 +203,53 @@
 <section bind:this={industrySection} class="industry-section">
   <div class="container">
     <div class="industry-content">
-      <h2 class="section-title">The Evolution of Music</h2>
+      <h2 class="section-title">La evolución de la música</h2>
       
       <div class="industry-stats">
         <div class="stat-card">
           <div class="stat-number">2.7B</div>
-          <div class="stat-label">Global music streams daily</div>
+          <div class="stat-label">Streamings diarios globales</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">100M+</div>
-          <div class="stat-label">Songs available digitally</div>
+          <div class="stat-label">Canciones digitales disponibles</div>
         </div>
         <div class="stat-card">
           <div class="stat-number">$26.2B</div>
-          <div class="stat-label">Global music industry revenue (2023)</div>
+          <div class="stat-label">Ingresos de la industria musical mundial (2024)</div>
         </div>
       </div>
 
       <div class="industry-narrative">
         <p>
-          From the crackling warmth of vinyl records to the crystal clarity of digital streaming, 
-          the music industry has undergone a remarkable transformation. Each era has left its mark, 
-          not just in sound quality, but in how we discover, consume, and connect with music.
+          Desde la calidez crepitante de los discos de vinilo hasta la claridad cristalina del streaming digital,
+           la industria musical ha atravesado una transformación notable. Cada era ha dejado su huella,
+            no solo en la calidad del sonido, sino también en cómo descubrimos, consumimos y nos conectamos
+             con la música.
         </p>
         <p>
-          The vinyl record, once thought obsolete, has experienced a renaissance. In 2023, vinyl 
-          sales reached their highest point since 1987, proving that physical media still holds 
-          a special place in our hearts and collections.
+          El disco de vinilo, alguna vez considerado obsoleto, ha experimentado un renacimiento. En 2023,
+           las ventas de vinilos alcanzaron su punto más alto desde 1987, demostrando que los medios físicos
+            aún ocupan un lugar especial en nuestros corazones y colecciones.
         </p>
       </div>
 
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-year">1950s</div>
-          <div class="timeline-content">Birth of Rock & Roll</div>
+          <div class="timeline-content">Nacimiento del Rock & Roll</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year">1980s</div>
-          <div class="timeline-content">Digital Revolution Begins</div>
+          <div class="timeline-content">Comienzo de la revolución digital</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year">2000s</div>
-          <div class="timeline-content">Streaming Era Emerges</div>
+          <div class="timeline-content">Surgimiento de la era del stream</div>
         </div>
         <div class="timeline-item">
           <div class="timeline-year">2020s</div>
-          <div class="timeline-content">Vinyl Renaissance</div>
+          <div class="timeline-content">Renacimiento del vinilo</div>
         </div>
       </div>
     </div>
@@ -259,19 +260,19 @@
 <section bind:this={visualizationSection} class="visualization-section">
   <div class="container">
     <div class="viz-content">
-      <h2 class="section-title">Decoding Musical Data</h2>
+      <h2 class="section-title">Decodificando datos musicales</h2>
       
       <p class="viz-intro">
-        Every vinyl record tells a story through visual elements. Our visualization system 
-        encodes multiple data dimensions into the familiar form of a record, creating an 
-        intuitive way to explore musical history and popularity.
+        Cada disco de vinilo cuenta una historia a través de elementos visuales. Nuestro sistema
+         de visualización codifica múltiples dimensiones de datos en la forma familiar de un disco,
+          creando una manera intuitiva de explorar la historia y popularidad musical.
       </p>
 
       <!-- Legend Section -->
       <div class="legend-grid">
         <!-- Colors / Genres -->
         <div class="legend-section">
-          <h3 class="legend-title">Colors Represent Genres</h3>
+          <h3 class="legend-title">Los colores representan el género</h3>
           <div class="genre-grid">
             {#each ['Rock', 'Pop', 'Latino', 'Electronica', 'Jazz', 'HipHop'] as genre}
               <div class="genre-item">
@@ -286,34 +287,34 @@
 
         <!-- Era Wear -->
         <div class="legend-section">
-          <h3 class="legend-title">Wear Patterns Show Musical Eras</h3>
+          <h3 class="legend-title">Los patrones de desgaste muestran las eras musicales.</h3>
           <div class="era-grid">
             <div class="era-item">
               <div class="vinyl-preview">
                 <img src="/vinyls/Base.png" alt="2000-2025" />
               </div>
-              <span>2000 – 2025<br/>Digital Age</span>
+              <span>2000 – 2025<br/></span>
             </div>
             <div class="era-item">
               <div class="vinyl-preview">
                 <img src="/vinyls/Base.png" alt="1950-2000" />
                 <img src="/overlays/1950-2000.png" alt="Medium wear" />
               </div>
-              <span>1950 – 2000<br/>Golden Era</span>
+              <span>1950 – 2000<br/></span>
             </div>
             <div class="era-item">
               <div class="vinyl-preview">
                 <img src="/vinyls/Base.png" alt="1900-1950" />
                 <img src="/overlays/1900-1950.png" alt="Heavy wear" />
               </div>
-              <span>1900 – 1950<br/>Early Recordings</span>
+              <span>1900 – 1950<br/></span>
             </div>
           </div>
         </div>
 
         <!-- Grooves / Popularity -->
         <div class="legend-section">
-          <h3 class="legend-title">Groove Density Indicates Popularity</h3>
+          <h3 class="legend-title">La densidad de los surcos indica la cantidad de reproducciones.</h3>
           <div class="grooves-grid">
             {#each [1, 2, 3, 4] as grooves}
               <div class="groove-item">
@@ -323,7 +324,7 @@
                 </div>
                 <span>
                   {grooves === 1 ? '< 50M' : grooves === 2 ? '< 100M' : grooves === 3 ? '< 500M' : '> 500M'}
-                  <br/>streams
+                  <br/>
                 </span>
               </div>
             {/each}
@@ -332,14 +333,14 @@
 
         <!-- Rankings -->
         <div class="legend-section">
-          <h3 class="legend-title">Star Rankings Show Chart Performance</h3>
+          <h3 class="legend-title">Ranking</h3>
           <div class="ranking-explanation">
             <div class="vinyl-preview large">
               <img src="/vinyls/Base.png" alt="Base" />
               <img src="/overlays/star.png" alt="Star ranking" />
               <span class="ranking-number">#1</span>
             </div>
-            <p>The number within the star indicates the album's peak chart position during its release week.</p>
+            <p>El número dentro de la estrella indica la posición más alta del álbum en los rankings durante su semana de lanzamiento..</p>
           </div>
         </div>
       </div>
@@ -351,7 +352,7 @@
 <section bind:this={playerSection} class="player-section">
   <div class="container">
     <div class="player-content">
-      <h2 class="section-title">Interactive Music Experience</h2>
+      <h2 class="section-title">Tocador de vinilos</h2>
       
       <!-- Main Player -->
       <div class="player-grid">
@@ -448,19 +449,19 @@
               
               <div class="record-meta">
                 <div class="meta-item">
-                  <span class="meta-label">Year:</span>
+                  <span class="meta-label">Año:</span>
                   <span class="meta-value">{selectedRecord().year}</span>
                 </div>
                 <div class="meta-item">
-                  <span class="meta-label">Genre:</span>
+                  <span class="meta-label">Genero:</span>
                   <span class="meta-value">{selectedRecord().genre}</span>
                 </div>
                 <div class="meta-item">
-                  <span class="meta-label">Streams:</span>
+                  <span class="meta-label">Reproducciones:</span>
                   <span class="meta-value">{selectedRecord().playsMillions}M</span>
                 </div>
                 <div class="meta-item">
-                  <span class="meta-label">Peak Chart:</span>
+                  <span class="meta-label">Ranking:</span>
                   <span class="meta-value">#{selectedRecord().ranking}</span>
                 </div>
               </div>
@@ -490,8 +491,8 @@
             </div>
           {:else}
             <div class="no-selection">
-              <h3>Select an Album</h3>
-              <p>Choose a record from the collection below to start exploring</p>
+              <h3>Elige un Album</h3>
+              <p></p>
             </div>
           {/if}
         </div>
@@ -499,7 +500,7 @@
 
       <!-- Record Collection -->
       <div class="record-collection">
-        <h3>Album Collection</h3>
+        <h3></h3>
         <div class="collection-carousel">
           <button
             onclick={handlePrevious}
@@ -562,21 +563,21 @@
 <!-- Dashboard Section -->
 <section bind:this={dashboardSection} class="dashboard-section">
   <div class="container">
-    <h2 class="section-title">Music Industry Analytics</h2>
+    <h2 class="section-title">Analisis de la insutria musical</h2>
     
     <div class="dashboard-grid">
       <!-- Genre Distribution -->
       <div class="dashboard-card">
-        <h3>Genre Distribution</h3>
+        <h3>Generos</h3>
         <div class="chart-placeholder">
-          <p>Flourish Chart: Genre popularity over time</p>
+          <p>Popularidad del género durante el tiempo</p>
           <div class="flourish-embed" data-src="visualisation/placeholder-1"></div>
         </div>
       </div>
 
       <!-- Streaming Trends -->
       <div class="dashboard-card">
-        <h3>Streaming Evolution</h3>
+        <h3>Evolución de reproducciones</h3>
         <div class="chart-placeholder">
           <p>Flourish Chart: Streaming vs Physical sales timeline</p>
           <div class="flourish-embed" data-src="visualisation/placeholder-2"></div>
@@ -585,7 +586,7 @@
 
       <!-- Regional Preferences -->
       <div class="dashboard-card">
-        <h3>Global Music Preferences</h3>
+        <h3>Performance global</h3>
         <div class="chart-placeholder">
           <p>Flourish Chart: World map of genre preferences</p>
           <div class="flourish-embed" data-src="visualisation/placeholder-3"></div>
@@ -594,7 +595,7 @@
 
       <!-- Artist Impact -->
       <div class="dashboard-card">
-        <h3>Artist Influence Network</h3>
+        <h3>Influencia del artista global</h3>
         <div class="chart-placeholder">
           <p>Flourish Chart: Network graph of artist collaborations</p>
           <div class="flourish-embed" data-src="visualisation/placeholder-4"></div>
@@ -603,27 +604,27 @@
     </div>
 
     <div class="insights-section">
-      <h3>Key Insights</h3>
+      <h3>Datos curiosos</h3>
       <div class="insights-grid">
         <div class="insight-card">
           <div class="insight-icon">🎵</div>
-          <h4>Genre Evolution</h4>
-          <p>Electronic music has seen a 340% increase in streaming over the past decade, while rock maintains steady popularity across all age groups.</p>
+          <h4>Evolucion de la música electronica</h4>
+          <p>La música electrónica ha experimentado un aumento del 340% en reproducciones por streaming durante la última década, mientras que el rock mantiene una popularidad constante en todos los grupos etarios.</p>
         </div>
         <div class="insight-card">
           <div class="insight-icon">🌍</div>
-          <h4>Global Reach</h4>
-          <p>Latin music has become the fastest-growing genre globally, with reggaeton and Latin pop crossing cultural boundaries.</p>
+          <h4>Alcance global</h4>
+          <p>La música latina se ha convertido en el género de más rápido crecimiento a nivel mundial, con el reguetón y el pop latino cruzando fronteras culturales.</p>
         </div>
         <div class="insight-card">
           <div class="insight-icon">📈</div>
-          <h4>Vinyl Revival</h4>
-          <p>Vinyl sales have grown for 16 consecutive years, with Gen Z driving 43% of purchases despite growing up in the digital age.</p>
+          <h4>Renacimiento de los Vinilos</h4>
+          <p>Las ventas de vinilos han crecido durante 16 años consecutivos, con la Generación Z impulsando el 43% de las compras a pesar de haber crecido en la era digital..</p>
         </div>
         <div class="insight-card">
           <div class="insight-icon">🎧</div>
-          <h4>Listening Habits</h4>
-          <p>The average listener discovers 5 new artists per month through algorithmic recommendations, but 67% still value human curation.</p>
+          <h4>Habitos musicales</h4>
+          <p>El oyente promedio descubre 5 nuevos artistas por mes gracias a las recomendaciones algorítmicas, pero el 67% aún valora la curaduría humana.</p>
         </div>
       </div>
     </div>
@@ -634,19 +635,21 @@
 <section class="conclusion-section">
   <div class="container">
     <div class="conclusion-content">
-      <h2>The Beat Goes On</h2>
+      <h2>La música nunca termina</h2>
       <p class="conclusion-text">
-        Music remains one of humanity's most powerful forms of expression, constantly evolving 
-        while honoring its roots. From the warm crackle of vinyl to the infinite possibilities 
-        of digital streaming, each era has contributed to the rich tapestry of musical history.
+        La música sigue siendo una de las formas de expresión más poderosas de la humanidad,
+         evolucionando constantemente mientras honra sus raíces. Desde el cálido crepitar del vinilo 
+         hasta las posibilidades infinitas del streaming digital, cada era ha contribuido al rico
+          tapiz de la historia musical.
       </p>
       <p class="conclusion-text">
-        As we look to the future, emerging technologies like AI-generated music, spatial audio, 
-        and virtual concerts promise to reshape how we create and experience music. Yet the 
-        fundamental human need for rhythm, melody, and emotional connection remains unchanged.
+        Al mirar hacia el futuro, tecnologías emergentes como la música generada por IA, el audio 
+        espacial y los conciertos virtuales prometen transformar la forma en que creamos y
+         experimentamos la música. Sin embargo, la necesidad humana fundamental de ritmo, melodía
+          y conexión emocional permanece intacta.
       </p>
       <div class="conclusion-cta">
-        <p>The story of music is still being written. What chapter will you add?</p>
+        <p>La música continua</p>
       </div>
     </div>
   </div>
@@ -657,11 +660,11 @@
   <div class="container">
     <div class="footer-content">
       <div class="footer-section">
-        <h4>About This Visualization</h4>
-        <p>An interactive exploration of music industry data, combining historical context with modern analytics to tell the story of musical evolution.</p>
+        <h4>Sobre esta visualización</h4>
+        <p>Una exploración interactiva de los datos de la industria musical, que combina contexto histórico con análisis modernos para contar la historia de la evolución musical..</p>
       </div>
       <div class="footer-section">
-        <h4>Data Sources</h4>
+        <h4>Fuentes</h4>
         <ul>
           <li>Recording Industry Association of America (RIAA)</li>
           <li>International Federation of the Phonographic Industry (IFPI)</li>
@@ -670,12 +673,12 @@
         </ul>
       </div>
       <div class="footer-section">
-        <h4>Methodology</h4>
-        <p>This visualization encodes multiple data dimensions into familiar vinyl record aesthetics, making complex industry data accessible and engaging.</p>
+        <h4>Metodología</h4>
+        <p>Esta visualización codifica múltiples dimensiones de datos en la estética familiar de los discos de vinilo, haciendo que los datos complejos de la industria sean accesibles y atractivos.</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 Music Data Visualization. Created with passion for music and data.</p>
+      <p>&copy; 2024 Music Data Visualization. Creado con pasión para la música y la visualización</p>
     </div>
   </div>
 </footer>
