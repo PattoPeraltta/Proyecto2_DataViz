@@ -20,6 +20,8 @@
   let recordRotation = $state(0);
   let animationFrame;
 
+  let isMenuOpen = $state(false);
+
   // Scroll sections
   let heroSection = $state();
   let industrySection = $state();
@@ -183,10 +185,29 @@
 </script>
 
 <svelte:window />
+
+<!-- Menu -->
+<button class="menu-button" onclick={() => (isMenuOpen = !isMenuOpen)} class:open={isMenuOpen}>
+  <div class="bar1"></div>
+  <div class="bar2"></div>
+  <div class="bar3"></div>
+</button>
+
+<div class="menu-overlay" class:open={isMenuOpen} onclick={() => (isMenuOpen = false)}></div>
+
+<nav class="side-menu" class:open={isMenuOpen}>
+  <a href="#hero" onclick={() => (isMenuOpen = false)}>Inicio</a>
+  <a href="#industry" onclick={() => (isMenuOpen = false)}>Evolución</a>
+  <a href="#visualization" onclick={() => (isMenuOpen = false)}>Leyenda</a>
+  <a href="#player" onclick={() => (isMenuOpen = false)}>Tocador</a>
+  <a href="#dashboard" onclick={() => (isMenuOpen = false)}>Análisis</a>
+  <a href="#conclusion" onclick={() => (isMenuOpen = false)}>Conclusión</a>
+</nav>
+
 <audio bind:this={audioElement} onended={() => isPlaying = false}></audio>
 
 <!-- Hero Section -->
-<section bind:this={heroSection} class="hero-section">
+<section bind:this={heroSection} id="hero" class="hero-section">
   <div class="hero-content">
     <h1 class="typewriter">{displayedText}</h1>
     <p class="hero-subtitle" style="opacity: {displayedText.length === fullText.length ? 1 : 0}">
@@ -194,13 +215,13 @@
     </p>
   </div>
   <div class="scroll-indicator" style="opacity: {displayedText.length === fullText.length ? 1 : 0}">
+    <span style="margin-bottom: 1rem;">Scroll to explore</span>
     <div class="scroll-arrow"></div>
-    <span>Scroll to explore</span>
   </div>
 </section>
 
 <!-- Industry Overview Section -->
-<section bind:this={industrySection} class="industry-section">
+<section bind:this={industrySection} id="industry" class="industry-section">
   <div class="container">
     <div class="industry-content">
       <h2 class="section-title">La evolución de la música</h2>
@@ -257,7 +278,7 @@
 </section>
 
 <!-- Visualization Explanation Section -->
-<section bind:this={visualizationSection} class="visualization-section">
+<section bind:this={visualizationSection} id="visualization" class="visualization-section">
   <div class="container">
     <div class="viz-content">
       <h2 class="section-title">Decodificando datos musicales</h2>
@@ -335,9 +356,8 @@
         <div class="legend-section">
           <h3 class="legend-title">Ranking</h3>
           <div class="ranking-explanation">
-            <div class="vinyl-preview large">
-              <img src="/vinyls/Base.png" alt="Base" />
-              <img src="/overlays/star.png" alt="Star ranking" />
+            <div class="vinyl-preview star">
+              <img src="/overlays/star_leyenda.png" alt="Star ranking" />
               <span class="ranking-number">#1</span>
             </div>
             <p>El número dentro de la estrella indica la posición más alta del álbum en los rankings durante su semana de lanzamiento..</p>
@@ -349,7 +369,7 @@
 </section>
 
 <!-- Interactive Player Section -->
-<section bind:this={playerSection} class="player-section">
+<section bind:this={playerSection} id="player" class="player-section">
   <div class="container">
     <div class="player-content">
       <h2 class="section-title">Tocador de vinilos</h2>
@@ -561,7 +581,7 @@
 </section>
 
 <!-- Dashboard Section -->
-<section bind:this={dashboardSection} class="dashboard-section">
+<section bind:this={dashboardSection} id="dashboard" class="dashboard-section">
   <div class="container">
     <h2 class="section-title">Analisis de la insutria musical</h2>
     
@@ -632,7 +652,7 @@
 </section>
 
 <!-- Conclusion Section -->
-<section class="conclusion-section">
+<section id="conclusion" class="conclusion-section">
   <div class="container">
     <div class="conclusion-content">
       <h2>La música nunca termina</h2>
@@ -749,8 +769,6 @@
     border-right: 2px solid #fbbf24;
     border-bottom: 2px solid #fbbf24;
     transform: rotate(45deg);
-    animation: bounce 2s infinite;
-    margin-bottom: 0.5rem;
   }
 
   @keyframes blink-cursor {
@@ -822,6 +840,7 @@
     font-size: 1.125rem;
     line-height: 1.8;
     color: #d1d5db;
+    text-align: center;
   }
 
   .timeline {
@@ -906,7 +925,9 @@
     border: 2px solid rgba(251, 191, 36, 0.3);
   }
 
-  .vinyl-preview.large {
+  .vinyl-preview.star {
+    border: none;
+    border-radius: 0;
     width: 120px;
     height: 120px;
   }
@@ -936,6 +957,7 @@
     font-weight: 700;
     color: #000;
     font-size: 1.25rem;
+    margin-top: 0.5rem;
   }
 
   /* Player Section */
@@ -1594,6 +1616,102 @@
   .footer-bottom p {
     color: #6b7280;
     margin: 0;
+  }
+
+  /* Side Menu */
+  .menu-button {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    width: 40px;
+    height: 40px;
+    background: rgba(251, 191, 36, 0.8);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .menu-button div {
+    width: 24px;
+    height: 2px;
+    background-color: #0a0a0a;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .menu-button.open .bar1 {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .menu-button.open .bar2 {
+    opacity: 0;
+  }
+
+  .menu-button.open .bar3 {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  .side-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    height: 100vh;
+    background: #111;
+    z-index: 1000;
+    transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    padding-top: 6rem;
+    border-left: 1px solid rgba(251, 191, 36, 0.3);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  }
+
+  .side-menu.open {
+    right: 0;
+  }
+
+  .side-menu a {
+    display: block;
+    padding: 1rem 2rem;
+    color: #d1d5db;
+    text-decoration: none;
+    font-size: 1.125rem;
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+    border-bottom: 1px solid #2d2d2d;
+  }
+
+  .side-menu a:hover {
+    background-color: rgba(251, 191, 36, 0.1);
+    color: #fbbf24;
+  }
+
+  .side-menu a:first-child {
+    border-top: 1px solid #2d2d2d;
+  }
+
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+  }
+
+  .menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
   }
 
   /* Responsive Design */
