@@ -588,7 +588,6 @@
     <div class="dashboard-grid">
       <!-- Genre Distribution -->
       <div class="dashboard-card">
-        <h3>Generos</h3>
         <div class="chart-placeholder">
           
           <div class="flourish-embed" data-src="visualisation/placeholder-1">
@@ -599,30 +598,11 @@
 
       <!-- Streaming Trends -->
       <div class="dashboard-card">
-        <h3>Evolución de reproducciones</h3>
         <div class="chart-placeholder">
           
           <div class="flourish-embed" data-src="visualisation/placeholder-2">
             <iframe src='https://flo.uri.sh/visualisation/23853897/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe><div style='width:100%!;margin-top:4px!important;text-align:right!important;'><a class='flourish-credit' href='https://public.flourish.studio/visualisation/23853897/?utm_source=embed&utm_campaign=visualisation/23853897' target='_top' style='text-decoration:none!important'><img alt='Made with Flourish' src='https://public.flourish.studio/resources/made_with_flourish.svg' style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'> </a></div>
             </div>
-        </div>
-      </div>
-
-      <!-- Regional Preferences -->
-      <div class="dashboard-card">
-        <h3>Performance global</h3>
-        <div class="chart-placeholder">
-          <p>Flourish Chart: World map of genre preferences</p>
-          <div class="flourish-embed" data-src="visualisation/placeholder-3"></div>
-        </div>
-      </div>
-
-      <!-- Artist Impact -->
-      <div class="dashboard-card">
-        <h3>Influencia del artista global</h3>
-        <div class="chart-placeholder">
-          <p>Flourish Chart: Network graph of artist collaborations</p>
-          <div class="flourish-embed" data-src="visualisation/placeholder-4"></div>
         </div>
       </div>
     </div>
@@ -1466,16 +1446,15 @@
 
   .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
     margin-bottom: 3rem;
   }
 
   .dashboard-card {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(251, 191, 36, 0.3);
-    border-radius: 1rem;
-    padding: 2rem;
+    min-height: 600px;
+    font-size: 1.2rem;
+    text-align: center;
   }
 
   .dashboard-card h3 {
@@ -1779,6 +1758,12 @@
 
     .album-card {
       width: 100%;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .dashboard-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
