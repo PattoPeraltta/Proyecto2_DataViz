@@ -590,8 +590,10 @@
       <div class="dashboard-card">
         <h3>Generos</h3>
         <div class="chart-placeholder">
-          <p>Popularidad del género durante el tiempo</p>
-          <div class="flourish-embed" data-src="visualisation/placeholder-1"></div>
+          
+          <div class="flourish-embed" data-src="visualisation/placeholder-1">
+              <iframe src='https://flo.uri.sh/visualisation/23853147/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe><div style='width:100%!;margin-top:4px!important;text-align:right!important;'><a class='flourish-credit' href='https://public.flourish.studio/visualisation/23853147/?utm_source=embed&utm_campaign=visualisation/23853147' target='_top' style='text-decoration:none!important'><img alt='Made with Flourish' src='https://public.flourish.studio/resources/made_with_flourish.svg' style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'> </a></div>
+              </div>
         </div>
       </div>
 
@@ -599,8 +601,10 @@
       <div class="dashboard-card">
         <h3>Evolución de reproducciones</h3>
         <div class="chart-placeholder">
-          <p>Flourish Chart: Streaming vs Physical sales timeline</p>
-          <div class="flourish-embed" data-src="visualisation/placeholder-2"></div>
+          
+          <div class="flourish-embed" data-src="visualisation/placeholder-2">
+            <iframe src='https://flo.uri.sh/visualisation/23853897/embed' title='Interactive or visual content' class='flourish-embed-iframe' frameborder='0' scrolling='no' sandbox='allow-same-origin allow-forms allow-scripts allow-downloads allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation'></iframe><div style='width:100%!;margin-top:4px!important;text-align:right!important;'><a class='flourish-credit' href='https://public.flourish.studio/visualisation/23853897/?utm_source=embed&utm_campaign=visualisation/23853897' target='_top' style='text-decoration:none!important'><img alt='Made with Flourish' src='https://public.flourish.studio/resources/made_with_flourish.svg' style='width:105px!important;height:16px!important;border:none!important;margin:0!important;'> </a></div>
+            </div>
         </div>
       </div>
 
@@ -1481,14 +1485,25 @@
   }
 
   .chart-placeholder {
-    height: 300px;
+    position: relative;
+    padding-top: 125%; /* Adjusted aspect ratio to prevent overflow */
+    height: 0;
+    overflow: hidden;
     background: rgba(251, 191, 36, 0.1);
     border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #9ca3af;
-    text-align: center;
+  }
+  
+  .chart-placeholder iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .chart-placeholder .flourish-credit {
+    display: none !important;
   }
 
   .insights-section {
