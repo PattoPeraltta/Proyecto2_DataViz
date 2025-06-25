@@ -583,7 +583,7 @@
 <!-- Dashboard Section -->
 <section bind:this={dashboardSection} id="dashboard" class="dashboard-section">
   <div class="container">
-    <h2 class="section-title">Analisis de la insutria musical</h2>
+    <h2 class="section-title">Análisis de la indsutria musical</h2>
     
     <div class="dashboard-grid">
       <!-- Genre Distribution -->
